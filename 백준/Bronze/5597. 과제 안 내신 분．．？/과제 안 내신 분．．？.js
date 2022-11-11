@@ -10,10 +10,7 @@ let input = [];
 rl.on("line", function (line) {
   input.push(line);
 }).on("close", function () {
-  let checkArray = Array.apply(null, new Array(30)).map(
-    Number.prototype.valueOf,
-    0
-  );
+  let checkArray = Array.from({ length: 30 }, () => 0);
 
   input.forEach((element) => {
     checkArray[element - 1] = 1;
