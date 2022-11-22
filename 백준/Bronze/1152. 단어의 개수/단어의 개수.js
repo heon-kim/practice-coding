@@ -1,4 +1,3 @@
 let fs = require("fs");
 let input = fs.readFileSync("/dev/stdin").toString().trim().split(" ");
-
-input == "" ? console.log("0") : console.log(input.length);
+console.log(input == "" ? 0 : input.length);
