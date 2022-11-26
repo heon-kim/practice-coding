@@ -30,8 +30,7 @@ let alphabet = [
   "z",
 ];
 
-var answer = Array.from({ length: alphabet.length }, () => -1);
-
+var answer = [...alphabet].fill(-1);
 alphabet.forEach((el, index) => {
   answer[index] = input.findIndex((element) => element === el);
 });
