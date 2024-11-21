@@ -1,0 +1,37 @@
+name: Auto Commit Repo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Repository
+        uses: actions/checkout@v3
+        with:
+          repository: heon-kim/practice-coding
+          ref: main
+          path: practice-coding
+
+      - name: Checkout Target Repository
+        uses: actions/checkout@v3
+        with:
+          repository: Fresh-hongsi/CoTeMaster_Hana
+          ref: main
+          path: CoTeMaster_Hana
+
+      - name: Copy Files to Target Folder
+        run: |
+          cp -r practice-coding/* CoTeMaster_Hana/해원/
+
+      - name: Commit and Push Changes
+        run: |
+          cd CoTeMaster_Hana
+          git config user.name "heon-kim"
+          git config user.email "vndtka123@gmail.com"
+          git add .
+          git commit -m "practice coding"
+          git push
