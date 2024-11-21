@@ -26,7 +26,7 @@ jobs:
 
       - name: Copy Files to Target Folder
         run: |
-          cp -r practice-coding/* CoTeMaster_Hana/해원/
+          rsync -av --delete practice-coding/ CoTeMaster_Hana/해원/
 
       - name: Commit and Push Changes
         run: |
@@ -34,5 +34,6 @@ jobs:
           git config user.name "heon-kim"
           git config user.email "vndtka123@gmail.com"
           git add .
-          git commit -m "practice coding"
-          git push
+          git commit -m "heon-kim practice coding"
+          git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/Fresh-hongsi/CoTeMaster_Hana.git
+          git push origin main
