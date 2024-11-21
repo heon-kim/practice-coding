@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  sync:
+  sync-repo:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source Repository
@@ -22,6 +22,7 @@ jobs:
           repository: Fresh-hongsi/CoTeMaster_Hana
           ref: main
           path: CoTeMaster_Hana
+          token: ${{ secrets.PAT_TOKEN }}
 
       - name: Copy Files to Target Folder
         run: |
