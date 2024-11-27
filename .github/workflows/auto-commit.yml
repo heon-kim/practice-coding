@@ -28,12 +28,18 @@ jobs:
         run: |
           rsync -av --delete practice-coding/ CoTeMaster_Hana/해원/
 
+      - name: Get Last Commit Message
+        id: last_commit
+        run: |
+          cd practice-coding
+          echo "::set-output name=message::$(git log -1 --pretty=%B)"
+
       - name: Commit and Push Changes
         run: |
           cd CoTeMaster_Hana
           git config user.name "heon-kim"
           git config user.email "vndtka123@gmail.com"
           git add .
-          git commit -m "heon-kim practice coding"
+          git commit -m "해원-${{ steps.last_commit.outputs.message }}" --allow-empty
           git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/Fresh-hongsi/CoTeMaster_Hana.git
           git push origin main
