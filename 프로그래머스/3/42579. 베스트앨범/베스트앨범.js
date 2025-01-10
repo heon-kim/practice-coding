@@ -1,37 +1,25 @@
 function solution(genres, plays) {
-    let obj = {}
-    let answer = []
+    const genreMap = {}
+    const result = []
     
-    for(let i = 0; i < genres.length; i++){
-        const g = genres[i]
-        const p = plays[i]
-        const ii = [i, p]
-        if(obj[g]){
-            obj[g].sum += p
-            obj[g].arr.push(ii)
-        }else{
-            obj[g] ={
-                sum: p,
-                arr:[ii]
-            } 
+    genres.forEach((genre, index)=>{
+        const totalPlays = plays[index]
+        if(!genreMap[genre]){
+            genreMap[genre]={
+                totalPlays:0,
+                songs:[]
+            }
         }
-    }
-    
-    const sorted = Object.values(obj).sort((a,b)=>{
-       return b.sum - a.sum
+        genreMap[genre].totalPlays += totalPlays
+        genreMap[genre].songs.push({index, totalPlays})
     })
     
-    for(let s of sorted){
-        const a = s.arr
-        const ss = a.sort((a,b)=>{
-            return b[1]-a[1]
-        })
-        
-        answer.push(ss[0][0])
-        
-        if(ss.length>=2){
-            answer.push(ss[1][0])
-        }
-    }
-    return answer
+    const sorted = Object.values(genreMap).sort((a,b)=>b.totalPlays - a.totalPlays)
+    
+    sorted.map((v)=>{
+       const temp = v.songs.sort((a,b)=>b.totalPlays-a.totalPlays).slice(0,2).map(i=>i.index)
+       result.push(...temp)
+    }) 
+    
+    return result
 }
