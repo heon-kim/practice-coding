@@ -1,12 +1,10 @@
-# 곱, 합, 등
-# 등 b
-# 점수 p,q,r
 n = int(input())
 arr = [list(map(int, input().split(" "))) for _ in range(n)]
-lst = []
 
-for i in arr:
-  lst.append([i[1]*i[2]*i[3], i[1]+i[2]+i[3], i[0]])
+def comp(x):
+  return [x[1]*x[2]*x[3], x[1]+x[2]+x[3], x[0]]
 
-for j in sorted(lst)[:3]:
-  print(j[2], end=" ")
+lst = sorted(arr, key=comp)
+
+for b,p,q,r in lst[:3]:
+  print(b, end=" ")
