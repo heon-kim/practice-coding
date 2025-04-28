@@ -4,30 +4,30 @@ input = lambda: sys.stdin.readline().rstrip()
 # input
 N, H = map(int, input().split())
 
-tops = [0] * (H + 1)
-bots = [0] * (H + 1)
+downs = [0] * (H + 1)
+ups = [0] * (H + 1)
 
 for i in range(N):
 	num = int(input())
 	if i % 2 == 0:
-		bots[num] += 1
+		ups[num] += 1
 	else:
-		tops[H - num + 1] += 1
+		downs[H - num + 1] += 1
 
 # solve
-mn = int(1e12)
-mn_num = 0
+min_num = int(1e12)
+min_count = 0
 
-cnt = N // 2
+obs_num = N // 2
 for h in range(1, H + 1):
-    cnt -= bots[h - 1]
-    cnt += tops[h]
+    obs_num -= ups[h - 1]
+    obs_num += downs[h]
 	
-    if mn == cnt:
-        mn_num += 1
+    if min_num == obs_num:
+        min_count += 1
 
-    if mn > cnt:
-        mn = cnt
-        mn_num = 1
+    if min_num > obs_num:
+        min_num = obs_num
+        min_count = 1
 
-print(mn, mn_num)
+print(min_num, min_count)
