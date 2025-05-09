@@ -1,7 +1,7 @@
 function solution(numbers) {
     var answer = '';
     const arr = numbers.map(item => item.toString())
-    const sarr = arr.sort((a, b)=>{
+    arr.sort((a, b)=>{
         if(a+b<b+a){
             return 1
         }else if(b+a<a+b){
@@ -13,5 +13,5 @@ function solution(numbers) {
     if (arr[0] == '0'){
         return '0'
     }
-    return sarr.join("");
+    return arr.join("");
 }
