@@ -10,12 +10,7 @@ def solution(lottos, win_nums):
         if i in win_nums:
             win_cnt += 1
     
-    max_rank = 7 - (zero_cnt+win_cnt)
-    min_rank = 7 - win_cnt
-    
-    if(max_rank >= 6):
-        max_rank = 6
-    if(min_rank >= 6):
-        min_rank = 6
+    max_rank = 7 - (zero_cnt+win_cnt) if zero_cnt+win_cnt >= 1 else 6
+    min_rank = 7 - win_cnt if win_cnt >= 1 else 6
     
     return [max_rank, min_rank]
