@@ -1,22 +1,24 @@
-N, M = map(int, input().split())
-A = list(map(int, input().split()))
+# 투포인터
 
-start = 0
-end = 0
-total = 0
-count = 0
+N, M = map(int, input().split())
+arr = list(map(int, input().split()))
+
+left = 0
+right = 0
+cnt = 0 
+current = 0
 
 while True:
-    if total >= M:
-        total -= A[start]
-        start += 1
-    elif end == N:
-        break
-    else:
-        total += A[end]
-        end += 1
+  if current >= M:
+    current -= arr[left]
+    left += 1
+  elif right >= N:
+    break
+  else:
+    current += arr[right]
+    right += 1
 
-    if total == M:
-        count += 1
+  if current == M:
+    cnt += 1
 
-print(count)
+print(cnt)
